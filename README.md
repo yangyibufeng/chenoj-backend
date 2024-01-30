@@ -1,39 +1,38 @@
 # SpringBoot 项目初始模板
 
-> 作者：[程序员鱼皮](https://github.com/liyybf)
-> 仅分享于 [编程导航知识星球](https://yybf.icu)
+>作者：杨毅不逢 （ https://github.com/yangyibufeng）
 
-基于 Java SpringBoot 的项目初始模板，整合了常用框架和主流业务的示例代码。
+基于Java SpringBoot的项目初始模板，整合了常用框架和主流业务的示例代码。
 
-只需 1 分钟即可完成内容网站的后端！！！大家还可以在此基础上快速开发自己的项目。
+只需要1分钟即可完成网站的内容！！！大家还可以在此基础上快速开发自己的项目。
 
-[toc]
+[目录]
 
-## 模板特点
+##模板特点
 
-### 主流框架 & 特性
+###主流框架及特性
 
 - Spring Boot 2.7.x（贼新）
 - Spring MVC
 - MyBatis + MyBatis Plus 数据访问（开启分页）
-- Spring Boot 调试工具和项目处理器
+- Spring Boot调试工具和项目处理器
 - Spring AOP 切面编程
 - Spring Scheduler 定时任务
-- Spring 事务注解
+- Spring事务注解
 
-### 数据存储
+###数据存储
 
-- MySQL 数据库
+- MySQL数据库
 - Redis 内存数据库
-- Elasticsearch 搜索引擎
-- 腾讯云 COS 对象存储
+- Elasticsearch搜索引擎
+-腾讯云 COS 对象存储
 
-### 工具类
+###工具类
 
 - Easy Excel 表格处理
-- Hutool 工具库
+- Hutool工具库
 - Apache Commons Lang3 工具类
-- Lombok 注解
+- Lombok注解
 
 ### 业务特性
 
