@@ -160,6 +160,31 @@ public class QuestionController {
     }
 
     /**
+     * 根据 id 获取 ,给要修改自己创建题目的用户一个可以访问自己题目全部信息的接口，没有题目信息脱敏
+     *
+     * @param id
+     * @return
+     */
+    @GetMapping("/get")
+    public BaseResponse<Question> getQuestionById(long id, HttpServletRequest request) {
+        if (id <= 0) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        Question question = questionService.getById(id);
+        if (question == null) {
+            throw new BusinessException(ErrorCode.NOT_FOUND_ERROR);
+        }
+        User loginUser = userService.getLoginUser(request);
+        //如果你不是本人或管理员，则没有权限访问
+        if (!question.getUserId().equals(loginUser.getId()) && !userService.isAdmin(loginUser)) {
+            throw new BusinessException(ErrorCode.NO_AUTH_ERROR);
+        }
+
+        return ResultUtils.success(question);
+    }
+
+
+    /**
      * 分页获取列表（仅管理员）
      *
      * @param questionQueryRequest
@@ -261,7 +286,6 @@ public class QuestionController {
         boolean result = questionService.updateById(question);
         return ResultUtils.success(result);
     }
-
 
 
 }
