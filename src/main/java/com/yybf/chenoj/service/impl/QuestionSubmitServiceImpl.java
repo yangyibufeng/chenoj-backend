@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yybf.chenoj.common.ErrorCode;
 import com.yybf.chenoj.constant.CommonConstant;
 import com.yybf.chenoj.exception.BusinessException;
+import com.yybf.chenoj.judge.JudgeService;
 import com.yybf.chenoj.mapper.QuestionSubmitMapper;
 import com.yybf.chenoj.model.dto.questionsubmit.QuestionSubmitAddRequest;
 import com.yybf.chenoj.model.dto.questionsubmit.QuestionSubmitQueryRequest;
@@ -22,10 +23,12 @@ import com.yybf.chenoj.service.UserService;
 import com.yybf.chenoj.utils.SqlUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 /**
@@ -41,6 +44,10 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
 
     @Resource
     private UserService userService;
+
+    @Resource
+    @Lazy // 设置懒加载，因为QuestionSubmitServiceImpl与JudgeServiceImpl相互依赖
+    private JudgeService judgeService;
 
     /**
      * 提交题目
@@ -73,14 +80,21 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
         questionSubmit.setQuestionId(questionId);
         questionSubmit.setCode(questionSubmitAddRequest.getCode());
         questionSubmit.setLanguage(language);
-        // todo 设置题目初始状态
+        // 设置题目初始状态
         questionSubmit.setStatus(QuestionSubmitStatusEnum.WAITING.getValue());
         questionSubmit.setJudgeInfo("{}");
         boolean save = this.save(questionSubmit);
         if (!save) {
             throw new BusinessException(ErrorCode.SYSTEM_ERROR, "题目数据插入失败");
         }
-        return questionSubmit.getId();
+        long questionSubmitId = questionSubmit.getId();
+        // todo 执行判题服务
+        CompletableFuture.runAsync(()->{
+            judgeService.doJudge(questionSubmitId);
+        });
+
+
+        return questionSubmitId;
     }
 
     /**
