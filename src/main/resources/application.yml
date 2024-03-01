@@ -103,5 +103,5 @@ knife4j:
           - com.yybf.chenoj.controller
 # 代码沙箱配置
 codesandbox:
-#  type: remote
-  type: example
+  type: remote
+#  type: example

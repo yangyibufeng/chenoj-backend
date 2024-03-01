@@ -36,7 +36,7 @@ class CodeSandboxTest {
         CodeSandbox codeSandbox = new ExampleCodeSandbox();
         String code = "int main() {}";
         String language = QuestionSubmitLanguageEnum.JAVA.getValue();
-        List<String> inputList = Arrays.asList("1 2", "3 4");
+        List<String> inputList = Arrays.asList("1 2", "3 4", "114 514");
         // 使用builder建造者模式，不用get，set方法，直接通过.的方式将属性传入构造器中
         ExecuteCodeRequest executeCodeRequest = ExecuteCodeRequest.builder()
                 .code(code)
@@ -82,9 +82,16 @@ class CodeSandboxTest {
         CodeSandbox codeSandbox = CodeSandboxFactory.newInstance(configType);
         // 创建一个代理类，将原本的实例传入，来实现功能的增强
         codeSandbox = new CodeSandboxProxy(codeSandbox);
-        String code = "int main() {}";
+//        String code = "int main() {}";
+        String code = "public class Main {\n" +
+                "    public static void main(String[] args) {\n" +
+                "        int a = Integer.parseInt(args[0]);\n" +
+                "        int b = Integer.parseInt(args[1]);\n" +
+                "        System.out.println(\"a+b的结果为：\" + (a + b));\n" +
+                "    }\n" +
+                "}";
         String language = QuestionSubmitLanguageEnum.JAVA.getValue();
-        List<String> inputList = Arrays.asList("1 2", "3 4");
+        List<String> inputList = Arrays.asList("1 2", "3 4", "114 514");
         // 使用builder建造者模式，不用get，set方法，直接通过.的方式将属性传入构造器中
         ExecuteCodeRequest executeCodeRequest = ExecuteCodeRequest.builder()
                 .code(code)

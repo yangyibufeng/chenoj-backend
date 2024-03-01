@@ -4,7 +4,7 @@ import com.yybf.chenoj.judge.strategy.DefaultJudgeStrategy;
 import com.yybf.chenoj.judge.strategy.JavaLanguageJudgeStrategy;
 import com.yybf.chenoj.judge.strategy.JudgeContext;
 import com.yybf.chenoj.judge.strategy.JudgeStrategy;
-import com.yybf.chenoj.model.dto.questionsubmit.JudgeInfo;
+import com.yybf.chenoj.judge.codesandbox.model.JudgeInfo;
 import com.yybf.chenoj.model.entity.QuestionSubmit;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 public class JudgeManager {
     /**
      * @param judgeContext:
-     * @return com.yybf.chenoj.model.dto.questionsubmit.JudgeInfo:
+     * @return com.yybf.chenoj.judge.codesandbox.model.JudgeInfo:
      * @author yangyibufeng
      * @description 执行判题
      * @date 2024/2/16 13:42

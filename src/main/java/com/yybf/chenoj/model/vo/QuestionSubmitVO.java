@@ -1,18 +1,14 @@
 package com.yybf.chenoj.model.vo;
 
 import cn.hutool.json.JSONUtil;
-import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.yybf.chenoj.model.dto.question.JudgeConfig;
-import com.yybf.chenoj.model.dto.questionsubmit.JudgeInfo;
-import com.yybf.chenoj.model.entity.Question;
+import com.yybf.chenoj.judge.codesandbox.model.JudgeInfo;
 import com.yybf.chenoj.model.entity.QuestionSubmit;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 /**
  * 题目提交封装类

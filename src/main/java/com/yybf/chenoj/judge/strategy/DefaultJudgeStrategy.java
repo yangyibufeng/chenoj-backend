@@ -3,7 +3,7 @@ package com.yybf.chenoj.judge.strategy;
 import cn.hutool.json.JSONUtil;
 import com.yybf.chenoj.model.dto.question.JudgeCase;
 import com.yybf.chenoj.model.dto.question.JudgeConfig;
-import com.yybf.chenoj.model.dto.questionsubmit.JudgeInfo;
+import com.yybf.chenoj.judge.codesandbox.model.JudgeInfo;
 import com.yybf.chenoj.model.entity.Question;
 import com.yybf.chenoj.model.enums.JudgeInfoMessageEnum;
 import org.jetbrains.annotations.NotNull;
@@ -20,7 +20,7 @@ public class DefaultJudgeStrategy implements JudgeStrategy {
 
     /**
      * @param judgeContext:
-     * @return com.yybf.chenoj.model.dto.questionsubmit.JudgeInfo:
+     * @return com.yybf.chenoj.judge.codesandbox.model.JudgeInfo:
      * @author yangyibufeng
      * @description 执行判题
      * @date 2024/2/16 14:07
@@ -79,7 +79,7 @@ public class DefaultJudgeStrategy implements JudgeStrategy {
     /**
      * @param judgeInfoResponse:    返回判题信息类
      * @param judgeInfoMessageEnum: 表示判题机的状态
-     * @return com.yybf.chenoj.model.dto.questionsubmit.JudgeInfo:
+     * @return com.yybf.chenoj.judge.codesandbox.model.JudgeInfo:
      * @author yangyibufeng
      * @description 将对应的枚举值装配到返回值里面
      * @date 2024/2/16 14:03

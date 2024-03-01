@@ -1,6 +1,6 @@
 package com.yybf.chenoj.judge.strategy;
 
-import com.yybf.chenoj.model.dto.questionsubmit.JudgeInfo;
+import com.yybf.chenoj.judge.codesandbox.model.JudgeInfo;
 
 /**
  * @author yangyibufeng
@@ -10,7 +10,7 @@ import com.yybf.chenoj.model.dto.questionsubmit.JudgeInfo;
 public interface JudgeStrategy {
     /**
      * @param judgeContext:
-     * @return com.yybf.chenoj.model.dto.questionsubmit.JudgeInfo:
+     * @return com.yybf.chenoj.judge.codesandbox.model.JudgeInfo:
      * @author yangyibufeng
      * @description 执行判题
      * @date 2024/2/16 13:42
