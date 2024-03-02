@@ -33,6 +33,7 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 @RequestMapping("/question_submit")
 @Slf4j
+@Deprecated
 public class QuestionSubmitController {
 
     @Resource

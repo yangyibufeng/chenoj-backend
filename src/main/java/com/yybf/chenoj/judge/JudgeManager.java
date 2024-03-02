@@ -32,6 +32,7 @@ public class JudgeManager {
         if ("java".equals(language)) {
             judgeStrategy = new JavaLanguageJudgeStrategy();
         }
-        return judgeStrategy.doJudge(judgeContext);
+        JudgeInfo judgeInfo = judgeStrategy.doJudge(judgeContext);
+        return judgeInfo;
     }
 }

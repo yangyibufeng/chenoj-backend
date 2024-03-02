@@ -1,9 +1,9 @@
 package com.yybf.chenoj.judge.strategy;
 
 import cn.hutool.json.JSONUtil;
+import com.yybf.chenoj.judge.codesandbox.model.JudgeInfo;
 import com.yybf.chenoj.model.dto.question.JudgeCase;
 import com.yybf.chenoj.model.dto.question.JudgeConfig;
-import com.yybf.chenoj.judge.codesandbox.model.JudgeInfo;
 import com.yybf.chenoj.model.entity.Question;
 import com.yybf.chenoj.model.enums.JudgeInfoMessageEnum;
 import org.jetbrains.annotations.NotNull;
@@ -50,19 +50,19 @@ public class JavaLanguageJudgeStrategy implements JudgeStrategy {
         // 判断题目限制
         String judgeConfigStr = question.getJudgeConfig();
         JudgeConfig judgeConfig = JSONUtil.toBean(judgeConfigStr, JudgeConfig.class);
-        
+
         /**
          * 假设Java语言的程序执行需要比其它语言多10秒
          */
         long JAVA_PROGRAM_TIME_COST = 100000L;
-        usingMemory -= JAVA_PROGRAM_TIME_COST;
+        usingTime -= JAVA_PROGRAM_TIME_COST;
 
         Long memoryLimit = judgeConfig.getMemoryLimit();
         Long timeLimit = judgeConfig.getTimeLimit();
-        if (usingMemory > memoryLimit) {
+        if (usingMemory != null && usingMemory > memoryLimit) {
             return setJudgeResult(judgeInfoResponse, JudgeInfoMessageEnum.MEMORY_LIMIT_EXCEEDED);
         }
-        if (usingTime > timeLimit) {
+        if (usingTime != null && usingTime > timeLimit) {
             return setJudgeResult(judgeInfoResponse, JudgeInfoMessageEnum.TIME_LIMIT_EXCEEDED);
         }
 
@@ -78,7 +78,7 @@ public class JavaLanguageJudgeStrategy implements JudgeStrategy {
             }
         }
 
-
+//        return setJudgeResult(judgeInfoResponse, JudgeInfoMessageEnum.ACCEPTED);
         return judgeInfoResponse;
     }
 
